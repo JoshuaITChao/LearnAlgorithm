@@ -1,18 +1,12 @@
 package com.joshua;
 
 @SuppressWarnings("unchecked")
-public class ArrayList<E> {
-	/**
-	 * 元素的数量
-	 */
-	private int size;
+public class ArrayList<E> extends AbstractList<E> {
 	/**
 	 * 所有元素
 	 */
 	private E[] elements;
-
 	private static final int DEFAULT_CAPATICY = 10;
-	private static final int ELEMENT_NOT_FOUND = -1;
 	
 	public ArrayList(int capaticy) {
 		capaticy = (capaticy > DEFAULT_CAPATICY) ? capaticy : DEFAULT_CAPATICY;
@@ -33,35 +27,7 @@ public class ArrayList<E> {
 		}
 		size = 0;
 	}
-
-	/**
-	 * 元素数量
-	 */
-	public int size() {
-		return size;
-	}
-	/**
-	 * 是否为空
-	 * @return
-	 */
-	public Boolean isEmpty() {
-		return size == 0;
-	}
-	/**
-	 * 是否包含某个元素
-	 * @param element
-	 * @return
-	 */
-	public Boolean contains(E element) {
-		return indexOf(element) != ELEMENT_NOT_FOUND;
-	}
-	/**
-	 * 添加元素到尾部
-	 * @param element
-	 */
-	public void add(E element) {
-		add(size, element);
-	}
+	
 	/**
 	 * 获取index位置到元素
 	 * @param index
@@ -100,8 +66,8 @@ public class ArrayList<E> {
 		// 确保有足够容量
 		ensureCapaticy(size + 1);
 		
-		for (int i = size-1; i >= index; i++) {
-			elements[i+1] = elements[i];
+		for (int i = size; i > index; i--) {
+			elements[i] = elements[i-1];
 		}
 		elements[index] = element;
 		size++;
@@ -141,24 +107,6 @@ public class ArrayList<E> {
 			}
 		}
 		return ELEMENT_NOT_FOUND;
-	}
-	
-	/**
-	 * 检查索引是否合法
-	 * @param index
-	 */
-	private void rangeCheck(int index) {
-		if(index < 0 || index >= size) {
-			outOfBounds(index);
-		}
-	}
-	private void rangeCheckForAdd(int index) {
-		if(index < 0 || index > size) {
-			outOfBounds(index);
-		}
-	}
-	private void outOfBounds(int index) {
-		throw new IndexOutOfBoundsException("Index："+index+", Size："+size);
 	}
 	/**
 	 * 保证要有足够的capacity容量
