@@ -51,6 +51,9 @@ public class LinkedList<E> extends AbstractList<E> {
 
 	@Override
 	public E remove(int index) {
+		// 注意：检查索引的合法性
+		rangeCheck(index);
+		
 		// 针对头部元素特殊处理
 		Node<E> node = first;
 		if(index == 0) {
