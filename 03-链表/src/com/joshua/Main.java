@@ -22,8 +22,20 @@ public class Main {
 		// size=4, [a, c, b, d]
 		
 		linkedList.remove(1);
+		// size=3, [a, b, d]
 		
 		System.out.println(linkedList);
+		
+		
+		// LinkedList2相关操作(虚拟头节点)
+		List<String> linkList2 = new LinkedList2<>();
+		linkList2.add("A");
+		linkList2.add("B");
+		linkList2.add(2, "C");
+		int index =  linkList2.indexOf("C");
+		System.out.println(index);
+		System.out.println(linkList2);
+		
 
 	}
 

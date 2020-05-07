@@ -1,6 +1,12 @@
 package com.joshua;
 
-public class LinkedList<E> extends AbstractList<E> {
+/**
+ * 通过虚拟头节点，优化add和set方法，使其处理逻辑和其他节点一致
+ * @author JoshuaSuper
+ *
+ * @param <E>
+ */
+public class LinkedList2<E> extends AbstractList<E> {
 	
 	// 私有类，Node节点对象
 	private static class Node<E>{
@@ -14,7 +20,7 @@ public class LinkedList<E> extends AbstractList<E> {
 	}
 	
 	// 创建First节点()
-	private Node<E> first;
+	private Node<E> first = new Node<>(null, null);
 	
 	@Override
 	public void clear() {
@@ -37,14 +43,9 @@ public class LinkedList<E> extends AbstractList<E> {
 
 	@Override
 	public void add(int index, E element) {
-		// 针对头部节点特殊处理
-		if(index == 0) {
-			first = new Node<E>(element, first);
-		}else {
-			// 获取index索引对应的上一个元素
-			Node<E> preNode = node(index - 1);
-			preNode.next = new Node<E>(element, preNode.next);
-		}
+		// 获取index索引对应的上一个元素
+		Node<E> preNode = index == 0 ? first : node(index - 1);
+		preNode.next = new Node<E>(element, preNode.next);
 		// 注意：size++
 		size++;
 	}
@@ -55,14 +56,9 @@ public class LinkedList<E> extends AbstractList<E> {
 		rangeCheck(index);
 		
 		// 针对头部元素特殊处理
-		Node<E> node = first;
-		if(index == 0) {
-			first = node.next;
-		}else {
-			Node<E> preNode = node(index-1);
-			node = preNode.next;
-			preNode.next = node.next;
-		}
+		Node<E> preNode = index == 0 ? first : node(index-1);
+		Node<E> node = preNode.next;
+		preNode.next = node.next;
 		// 注意：size--
 		size--;
 		return node.element;
@@ -71,13 +67,13 @@ public class LinkedList<E> extends AbstractList<E> {
 	@Override
 	public int indexOf(E element) {
 		if (element == null) {
-			Node<E> node = first;
+			Node<E> node = first.next;
 			for (int i = 0; i < size; i++) {
 				if (node.element == null) return i;
 				node = node.next;
 			}
 		} else {
-			Node<E> node = first;
+			Node<E> node = first.next;
 			for (int i = 0; i < size; i++) {
 				if (element.equals(node.element)) return i;
 				
@@ -96,7 +92,7 @@ public class LinkedList<E> extends AbstractList<E> {
 		// 检查索引是否合法
 		rangeCheck(index);
 		// 从第一个节点开始遍历
-		Node<E> node = first;
+		Node<E> node = first.next;
 		for (int i = 0; i < index; i++) {
 			node = node.next;
 		}
@@ -107,7 +103,7 @@ public class LinkedList<E> extends AbstractList<E> {
 	public String toString() {
 		StringBuilder string = new StringBuilder();
 		string.append("size=").append(size).append(", [");
-		Node<E> node = first;
+		Node<E> node = first.next;
 		for (int i = 0; i < size; i++) {
 			if (i != 0) {
 				string.append(", ");
