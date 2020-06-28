@@ -74,14 +74,20 @@ public class CircleDoubleLinkedList<E> extends AbstractList<E>{
 		// TODO Auto-generated method stub
 		rangeCheckForAdd(index);
 		
+		// index = 0
+		// size = 0
 		if(index == size) {
 			// 往后面添加元素
 			Node<E> oldLast = last;
-			last = new Node<>(oldLast, element, null);
+			last = new Node<>(oldLast, element, first);
 			if(oldLast == null) {
+				// 这是链表的第一个元素
 				first = last;
+				first.prev = first;
+				first.next = first;
 			}else {
 				oldLast.next = last;
+				first.prev = first;
 			}
 		}else {
 			// 往前面添加元素
@@ -89,11 +95,10 @@ public class CircleDoubleLinkedList<E> extends AbstractList<E>{
 			Node<E> prev = next.prev;
 			Node<E> node = new Node<>(prev, element, next);
 			next.prev = node;
+			prev.next = node;
 			
-			if(prev == null) {
+			if(next == first) {	// index = 0
 				first = node;
-			}else {
-				prev.next = node;
 			}
 		}
 		
