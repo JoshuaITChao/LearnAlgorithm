@@ -94,6 +94,7 @@ public class Main {
 		
 		queue.enQueueFront(11);
 		queue.enQueueFront(12);
+		// 11, 7, 6, 5, 4, 3, 2, 1, 100, 101, 102, 103, 104, 105, 106, null, null, null, null, null, null, 12
 		System.out.println(queue);
 		
 		while (!queue.isEmpty()) {
