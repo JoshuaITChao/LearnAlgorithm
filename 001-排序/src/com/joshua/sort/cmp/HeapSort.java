@@ -3,7 +3,7 @@ package com.joshua.sort.cmp;
 import com.joshua.sort.Sort;
 
 /**
- * 最好、最坏、平均复杂度都是 nlog(n)
+ * 堆排序的最好、最坏、平均复杂度都是 nlog(n)
  * @author wisecotechcp
  *
  * @param <T>

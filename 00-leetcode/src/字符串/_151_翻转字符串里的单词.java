@@ -1,5 +1,15 @@
 package 字符串;
 
+/**
+ * https://leetcode-cn.com/problems/reverse-words-in-a-string/
+ * 
+ * 大致思路：
+ *      第1步：去掉多余的空格，巧妙运用 cur
+ *      第2步：对整个字符串进行逆序
+ *      第3步：在对单个单词进行逆序
+ * 注意点：
+ *      由于单词的判断通过空格实现的，可是最后一个单词是没有空格的，所以需要特殊处理一下
+ */
 public class _151_翻转字符串里的单词 {
 
 	public static void main(String[] args) {

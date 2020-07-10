@@ -111,7 +111,7 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
 	 */
 	private void heapify() {
 		// 自上而下的上滤
-//		for (int i = 0; i < size; i++) {
+//		for (int i = 1; i < size; i++) {
 //			siftUp(i);
 //		}
 		
@@ -123,6 +123,7 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
 	
 	/**
 	 * 让index位置的元素下滤
+	 * 自下而上的叫下滤
 	 * @param index
 	 */
 	private void siftDown(int index) {
@@ -133,19 +134,20 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
 		// 必须保证index位置是非叶子节点
 		while (index < half) {
 			// index的节点有2中情况
-			// 1.只有做节点
+			// 1.只有左节点
 			// 2.同时有左右两个节点
 			
 			// 默认为左节点跟它进行比较
-			int leftIndex = (index << 1) + 1;
-			E child = elements[leftIndex];
+			int childIndex = (index << 1) + 1;
+			E child = elements[childIndex];
 			
 			// 右节点
-			int rightIndex = leftIndex + 1;
+			int rightIndex = childIndex + 1;
 			
 			// 选出左右节点最大的那个
 			if(rightIndex < size && compare(elements[rightIndex], child) > 0) {
-				child = elements[leftIndex = rightIndex];
+				child = elements[rightIndex];
+				childIndex =  rightIndex;
 			}
 			
 			if(compare(element, child) >= 0) break;
@@ -153,7 +155,7 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
 			// 将子节点存放到index位置
 			elements[index] = child;
 			// 重新设置index
-			index = leftIndex;
+			index = childIndex;
 		}
 		
 		elements[index] = element;
@@ -162,6 +164,7 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
 	
 	/**
 	 * 让index位置的元素上滤
+	 * 自上而下的叫上滤
 	 */
 	private void siftUp(int index) {
 		

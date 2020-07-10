@@ -2,6 +2,12 @@ package com.joshua.sort.cmp;
 
 import com.joshua.sort.Sort;
 
+/**
+ * 归并排序的最好、最坏、平均复杂度均为 nlog(n)
+ * @author wisecotechcp
+ *
+ * @param <T>
+ */
 public class MerageSort<T extends Comparable<T>> extends Sort<T> {
 
 	private T[] leftArray;
