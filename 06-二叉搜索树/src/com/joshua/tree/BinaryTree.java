@@ -84,7 +84,10 @@ public class BinaryTree<E> implements BinaryTreeInfo {
 		}
 		
 	}
-	
+	/**
+	 * 获取二叉树的高度
+	 * @return
+	 */
 	public int depath() {
 		if(root == null) return 0;
 		
