@@ -3,7 +3,7 @@ package com.joshua.sort.cmp;
 import com.joshua.sort.Sort;
 
 /**
- * 最坏和平局的复杂度	O(n2)
+ * 最坏和平均的复杂度	O(n^2)
  * 最好的时间的复杂度 O(n)
  * @author wisecotechcp
  *

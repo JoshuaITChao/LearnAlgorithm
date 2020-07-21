@@ -11,6 +11,7 @@ import com.joshua.sort.cmp.InsertionSort1;
 import com.joshua.sort.cmp.InsertionSort2;
 import com.joshua.sort.cmp.InsertionSort3;
 import com.joshua.sort.cmp.MerageSort;
+import com.joshua.sort.cmp.QuickSort;
 import com.joshua.sort.cmp.SelectionSort;
 import com.joshua.tools.Asserts;
 import com.joshua.tools.Integers;
@@ -31,7 +32,8 @@ public class Main {
 				new InsertionSort2(),
 				new InsertionSort3(),
 				new HeapSort(),
-				new MerageSort()
+				new MerageSort(),
+				new QuickSort()
 				);
 		
 
