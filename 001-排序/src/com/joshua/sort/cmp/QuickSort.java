@@ -2,6 +2,13 @@ package com.joshua.sort.cmp;
 
 import com.joshua.sort.Sort;
 
+/**
+ * 最好、平均复杂度(O(nlogn))
+ * 最坏平均复杂度(O(n^2))
+ * @author dingxiaomin
+ *
+ * @param <T>
+ */
 public class QuickSort<T extends Comparable<T>> extends Sort<T> {
 
 	@Override
